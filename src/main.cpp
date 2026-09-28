@@ -29,6 +29,7 @@ int main(int ac, char *av[]) {
 
   int res = 0;
   int n, m, k;
+  double seconds;
   if (ac != 4 && ac != 5) {
     std::cerr << "To start program write: linear_solver n m k [filename]\n";
     return 1;
@@ -74,17 +75,8 @@ int main(int ac, char *av[]) {
       std::cerr << "Cannot solve the system\n";
       return 1;
     }
-
-    std::cout << "Time (in microseconds): "
-              << std::chrono::duration_cast<std::chrono::microseconds>(end -
-                                                                       start)
-                     .count()
-              << "\n";
-    std::cout << "Time (in milliseconds): "
-              << std::chrono::duration_cast<std::chrono::milliseconds>(end -
-                                                                       start)
-                     .count()
-              << "\n";
+    seconds = std::chrono::duration<double>(end - start).count();
+    std::cout << "Time (in seconds): " << seconds << "\n";
     std::printf("x:\n");
     print_matrix(size, 1, x.data(), m);
 

@@ -1,9 +1,8 @@
 #pragma once
 
-#include <cstddef>
-
 #include <cmath>
-#include <limits>
+#include <cstddef>
+#include <stdexcept>
 
 template <typename T>
 T relative_residual(std::size_t n, const T *a, const T *b, const T *x) {
@@ -18,7 +17,7 @@ T relative_residual(std::size_t n, const T *a, const T *b, const T *x) {
     b_norm = std::hypot(b_norm, b[i]);
   }
   if (b_norm <= residual_norm * 1e-16) {
-    return std::numeric_limits<T>::infinity();
+    throw std::runtime_error("Too big relative_residual");
   }
   return residual_norm / b_norm;
 }

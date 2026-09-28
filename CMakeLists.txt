@@ -13,5 +13,4 @@ target_compile_options(linear_solver PRIVATE
     -O3
     -march=native
     -ffast-math
-
 )
